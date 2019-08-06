@@ -1,6 +1,17 @@
 from numpy.random import rand
 from numpy import nan_to_num
 
+
+# Deal with 2-to-3 range incompatibility.
+# See: https://stackoverflow.com/a/31136897/1951857
+try:
+    # Python 2
+    range = xrange
+except NameError:
+    # Python 3
+    pass
+
+
 def onmf(X, rank, alpha=1.0, max_iter=100, H_init=None, W_init=None):
         """
         Orthogonal non-negative matrix factorization.
