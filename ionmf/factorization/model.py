@@ -48,7 +48,7 @@ class iONMF:
 
     """
 
-    def __init__(self, rank=10, max_iter=100, alpha=1.0):
+    def __init__(self, rank=10, max_iter=100, alpha=1.0, callback=None):
         filterwarnings("ignore")
         self.coef_        = None
         self.basis_       = None
@@ -58,6 +58,7 @@ class iONMF:
         self.max_iter     = max_iter
         self.alpha        = alpha
         self.instantiated = False
+        self.callback     = callback
 
 
     def fit(self, data):
@@ -92,7 +93,8 @@ class iONMF:
         # Run factorization
         W, H  = onmf(X, rank=self.rank,
                      max_iter=self.max_iter,
-                     alpha=self.alpha)
+                     alpha=self.alpha,
+                     callback=self.callback)
 
         # Set model variables
         self.coef_  = W

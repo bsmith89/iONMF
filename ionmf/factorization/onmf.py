@@ -12,7 +12,8 @@ except NameError:
     pass
 
 
-def onmf(X, rank, alpha=1.0, max_iter=100, H_init=None, W_init=None):
+def onmf(X, rank, alpha=1.0, max_iter=100, H_init=None, W_init=None,
+         callback=None):
         """
         Orthogonal non-negative matrix factorization.
 
@@ -54,5 +55,7 @@ def onmf(X, rank, alpha=1.0, max_iter=100, H_init=None, W_init=None):
                 denom = W.T.dot(W).dot(H) + 2.0 * alpha * HHTH
                 H = nan_to_num(H * enum / denom)
 
+            if callback:
+                callback(W=W, H=H)
 
         return W, H
