@@ -31,7 +31,7 @@ def onmf(X, rank, alpha=1.0, max_iter=100, H_init=None, W_init=None):
         W = rand(m, rank) if isinstance(W_init, type(None)) else W_init
         H = rand(rank, n) if isinstance(H_init, type(None)) else H_init
 
-        for itr in xrange(max_iter):
+        for itr in range(max_iter):
             if isinstance(W_init, type(None)):
                 enum = X.dot(H.T)
                 denom = W.dot(H.dot(H.T))
