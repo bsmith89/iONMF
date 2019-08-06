@@ -1,4 +1,4 @@
-from onmf import onmf
+from ionmf.factorization.onmf import onmf
 from numpy import zeros, hstack
 from warnings import filterwarnings
 
