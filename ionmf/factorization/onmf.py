@@ -44,13 +44,14 @@ def onmf(X, rank, alpha=1.0, max_iter=100, H_init=None, W_init=None,
         H = rand(rank, n) if isinstance(H_init, type(None)) else H_init
 
         for itr in range(max_iter):
+            HHT = H.dot(H.T)
             if isinstance(W_init, type(None)):
                 enum = X.dot(H.T)
-                denom = W.dot(H.dot(H.T))
+                denom = W.dot(HHT)
                 W = nan_to_num(W * enum/denom)
 
             if isinstance(H_init, type(None)):
-                HHTH = H.dot(H.T).dot(H)
+                HHTH = HHT.dot(H)
                 enum = W.T.dot(X) + alpha * H
                 denom = W.T.dot(W).dot(H) + 2.0 * alpha * HHTH
                 H = nan_to_num(H * enum / denom)
