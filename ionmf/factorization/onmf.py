@@ -13,7 +13,7 @@ except NameError:
 
 
 def onmf(X, rank, alpha=1.0, max_iter=100, H_init=None, W_init=None,
-         callback=None):
+         callback=None, callback_mod=1):
         """
         Orthogonal non-negative matrix factorization.
 
@@ -56,6 +56,8 @@ def onmf(X, rank, alpha=1.0, max_iter=100, H_init=None, W_init=None,
                 H = nan_to_num(H * enum / denom)
 
             if callback:
+                if itr % callback_mod == 0:
+                    pass  # TODO: Calculate the objective function.
                 callback(W=W, H=H)
 
         return W, H
