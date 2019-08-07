@@ -57,7 +57,6 @@ def onmf(X, rank, alpha=1.0, max_iter=100, H_init=None, W_init=None,
 
             if callback:
                 if itr % callback_mod == 0:
-                    pass  # TODO: Calculate the objective function.
-                callback(W=W, H=H)
+                    callback(W=W, H=H)
 
         return W, H
